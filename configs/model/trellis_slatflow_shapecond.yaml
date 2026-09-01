@@ -1,0 +1,20 @@
+_target_: triflow.models.trellis_shape_conditioned_slat_flow.ShapeConditionedSlatFlowModel
+slat_flow_config:
+  resolution: 64
+  in_channels: 16
+  out_channels: 16
+  model_channels: 768
+  cond_channels: 768
+  num_blocks: 12
+  num_heads: 12
+  mlp_ratio: 4
+  patch_size: 2
+  num_io_res_blocks: 2
+  io_block_channels: [128]
+  pe_mode: "ape"
+  qk_rms_norm: true
+  use_fp16: false
+cond_face_count: true
+cond_quad_ratio: true
+cond_sdf_latent: true
+sdf_feat_dim: 16

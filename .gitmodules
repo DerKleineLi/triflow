@@ -1,0 +1,10 @@
+[submodule "third_party/TRELLIS"]
+	path = third_party/TRELLIS
+	url = https://github.com/microsoft/TRELLIS.git
+[submodule "third_party/Direct3D-S2"]
+	path = third_party/Direct3D-S2
+	url = https://github.com/DreamTechAI/Direct3D-S2.git
+[submodule "third_party/pyfqmr-triflow"]
+	path = third_party/pyfqmr-triflow
+	url = https://github.com/DerKleineLi/pyfqmr-triflow.git
+	branch = triflow

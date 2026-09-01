@@ -1,0 +1,4 @@
+# Pretrained weights are downloaded separately — see README.md.
+# This file only keeps the directory present in a fresh clone.
+*
+!.gitignore

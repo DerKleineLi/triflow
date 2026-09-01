@@ -1,0 +1,98 @@
+_target_: triflow.trainers.trellis_latent_slatflow_trainer.TrellisLatentSlatFlowTrainer
+optimizer:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: 1e-4
+  weight_decay: 0.0
+  fused: true
+lr_scheduler:
+  _target_: torch.optim.lr_scheduler.StepLR
+  _partial_: true
+  step_size: 3000000
+  gamma: 0.9
+lr_warmup:
+  warmup_steps: 0
+  start: 1e-6
+  end: 1e-4
+t_schedule:
+  name: uniform
+pre_process_data:
+  _target_: triflow.callbacks.latent_flow.PreProcess
+  _partial_: true
+post_process_recon:
+  _target_: triflow.callbacks.latent_flow.PostProcess
+  _partial_: true
+get_cond:
+  _target_: triflow.callbacks.latent_flow.GetCondition
+  _partial_: true
+  sdf_scale: 128.0
+metrics_func:
+  _target_: triflow.callbacks.nvv_vae.Metrics
+batch_sampler:
+  _target_: triflow.datasets.sampler.FixedSizeBalancedBatchSampler
+  _partial_: true
+  shuffle: true
+loss_func: l1
+batch_size_per_gpu: 4
+inference_step_size: 0.05
+gradient_accumulation_steps: 1
+max_iterations: 1000000
+log_every: 25
+eval_every: 1000
+sample_every: 1000
+save_every: 5000
+num_samples: 4
+num_workers: 4
+val_ratio: 0.001
+max_grad_norm: 1.0
+precision: "fp16"
+model_ckpt: null
+nvv_vae:
+  _target_: triflow.models.direct3ds2_sparse_vae.Direct3ds2SparseVAE
+  use_checkpoint: true
+  embed_dim: 16
+  num_head_channels_encoder: 64
+  model_channels_encoder: 512
+  num_heads_encoder: 8
+  num_blocks_encoder: 4
+  num_head_channels_decoder: 64
+  model_channels_decoder: 1024
+  num_heads_decoder: 8
+  num_blocks_decoder: 4
+  resolution: 64
+  out_channels: 4
+  use_fp16: false
+  latents_scale: 1.0
+  latents_shift: 0.0
+  in_channels: 14
+  out_active: tanh
+  use_nvv_decoder: true
+  decoder_channel_down_factors: [2, 4, 4]
+  use_nvv_encoder: true
+  encoder_channel_down_factors: [4, 8, 16]
+  attn_mode: swin
+nvv_vae_ckpt: null
+sdf_vae:
+  _target_: triflow.models.direct3ds2_sparse_vae.Direct3ds2SparseVAE
+  use_checkpoint: true
+  embed_dim: 16
+  num_head_channels_encoder: 64
+  model_channels_encoder: 512
+  num_heads_encoder: 8
+  num_blocks_encoder: 4
+  num_head_channels_decoder: 64
+  model_channels_decoder: 512
+  num_heads_decoder: 8
+  num_blocks_decoder: 4
+  resolution: 64
+  out_channels: 1
+  use_fp16: false
+  latents_scale: 1.0
+  latents_shift: 0.0
+  in_channels: 1
+  out_active: tanh
+  use_nvv_decoder: true
+  decoder_channel_down_factors: [4, 8, 16]
+  use_nvv_encoder: true
+  encoder_channel_down_factors: [4, 8, 16]
+sdf_vae_ckpt: null

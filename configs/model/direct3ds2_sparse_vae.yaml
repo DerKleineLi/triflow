@@ -1,0 +1,22 @@
+_target_: triflow.models.direct3ds2_sparse_vae.Direct3ds2SparseVAE
+use_checkpoint: true
+embed_dim: 16
+num_head_channels_encoder: 64
+model_channels_encoder: 512
+num_heads_encoder: 8
+num_blocks_encoder: 4
+num_head_channels_decoder: 64
+model_channels_decoder: 512
+num_heads_decoder: 8
+num_blocks_decoder: 4
+resolution: 64
+in_channels: 1
+out_channels: 1
+out_active: tanh
+use_fp16: false
+latents_scale: 1.0
+latents_shift: 0.0
+use_nvv_decoder: true
+decoder_channel_down_factors: [4, 8, 16]
+use_nvv_encoder: true
+encoder_channel_down_factors: [4, 8, 16]

@@ -1,0 +1,19 @@
+defaults:
+  - dataset@trainer.dataset: mesh_512
+  - model@trainer.model: direct3ds2_sparse_vae
+  - trainer: direct3ds2_sparse_vae_trainer
+  - _self_
+
+output_folder: direct3ds2_sparse_sdf_vae_512
+trainer:
+  model_ckpt: checkpoints/sdf_vae.safetensors
+  batch_size_per_gpu: 1
+  no_variation: true
+  dataset:
+    visualize_type: sdf
+    filter_func:
+      max_num_coords_fine: 1000000
+
+hydra:
+  run:
+    dir: outputs/${hydra.job.name}/${output_folder}/${now:%Y-%m-%d_%H-%M-%S}

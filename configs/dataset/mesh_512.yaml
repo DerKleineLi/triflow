@@ -1,0 +1,23 @@
+_target_: triflow.datasets.mesh.MeshDataset
+data_root: data/dummy_dataset
+meta_file: data/dummy_dataset/metadata_512.json
+overfit: false
+augment_ratio: 0.0
+augment_strength: 0.5
+res_coarse: 64
+res_fine: 512
+pad: 1.5
+decimate_length: 3.5
+round_verts: False
+visualize_type: "nvv"
+filter_func:
+  _target_: triflow.callbacks.data_filter.FilterMeshes
+  min_faces: 16
+  min_ratio_discretization: 0.5
+  min_ratio_sampled_3ptimes: 0.95
+  min_num_coords_coarse: 1000
+  max_num_coords_fine: 2000000
+  min_num_coords_fine: 40000
+  max_ratio_coarse_fine: 0.025
+  max_decimation_dist: 4.0
+  max_decimation_chamfer: 0.5

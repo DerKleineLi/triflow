@@ -1,0 +1,40 @@
+# Core
+hydra-core==1.3.2
+omegaconf==2.3.0
+git+https://github.com/huggingface/accelerate@5adf855fb34acc124645feb91a5bdbfc10485ca7
+safetensors==0.7.0
+wandb==0.26.0
+tqdm==4.67.3
+rich==15.0.0
+
+# Numeric / ML
+numpy==2.2.6
+scipy==1.15.3
+numba==0.65.0
+
+# Mesh processing
+fbxloader==0.0.2
+trimesh==4.11.5
+meshlib==3.1.1.211
+meshiki==0.0.7
+open3d==0.19.0
+
+# Rendering
+pyrender==0.1.45
+PyOpenGL==3.1.0
+matplotlib==3.10.8
+
+# Voxel / SDF
+PyMCubes==0.1.6
+
+# TRELLIS dependencies
+easydict==1.13
+plyfile==1.1.3
+rembg==2.0.69
+onnxruntime==1.23.2
+transformers==5.5.4
+tensorboard==2.20.0
+git+https://github.com/EasternJournalist/utils3d.git@9a4eb15e4021b67b12c460c7057d642626897ec8
+https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.4.0_cu118/kaolin-0.18.0-cp310-cp310-linux_x86_64.whl
+spconv-cu118==2.3.8
+https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.3/flash_attn-2.7.3+cu11torch2.4cxx11abiFALSE-cp310-cp310-linux_x86_64.whl

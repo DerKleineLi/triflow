@@ -1,0 +1,42 @@
+_target_: triflow.trainers.direct3ds2_sparse_vae_trainer.Direct3ds2SparseVAETrainer
+optimizer:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: 1e-4
+  weight_decay: 0.0
+  fused: true
+lr_scheduler:
+  _target_: torch.optim.lr_scheduler.StepLR
+  _partial_: true
+  step_size: 3000000
+  gamma: 0.9
+lr_warmup:
+  warmup_steps: 0
+  start: 1e-6
+  end: 1e-4
+metrics_func:
+    _target_: triflow.callbacks.sdf_vae.SDFMetric
+pre_process_data:
+  _target_: triflow.callbacks.sdf_vae.SDFPreProcess
+post_process_recon:
+  _target_: triflow.callbacks.sdf_vae.SDFPostProcess
+loss_func:
+  _target_: triflow.callbacks.sdf_vae.SDFLoss
+batch_sampler:
+  _target_: triflow.datasets.sampler.FixedSizeBalancedBatchSampler
+  _partial_: true
+  shuffle: true
+batch_size_per_gpu: 4
+gradient_accumulation_steps: 1
+max_iterations: 1000000
+log_every: 25
+eval_every: 1000
+sample_every: 500
+save_every: 5000
+num_samples: 4
+num_workers: 4
+val_ratio: 0.001
+max_grad_norm: 1.0
+precision: "fp16"
+no_variation: false
+model_ckpt: null
